@@ -1,0 +1,3 @@
+Count,Animal,Countries,Location,Activity,Morning,output,timestamp
+4,cat,[],,"[""swam"", ""slept""]",false,,2025-06-23 16:25:32.099301
+14.1,cat,[],,"[""swam"", ""slept""]",false,,2025-06-23 16:25:44.280877

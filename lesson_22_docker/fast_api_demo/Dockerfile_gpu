@@ -1,0 +1,20 @@
+FROM nvidia/cuda:12.4.1-base-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Python, pip, and modern OpenGL libraries
+# (Ubuntu 22.04 naturally defaults to Python 3.10, matching your host env)
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    python3.10 \
+    python3-pip \
+    libgl1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PyTorch 2.6.0 with CUDA 12.4 support
+RUN pip3 install --no-cache-dir torch==2.6.0 torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/cu124
+
+WORKDIR /app
+COPY app_gpu.py /app
+
+CMD ["python3", "-u", "app_gpu.py"]
